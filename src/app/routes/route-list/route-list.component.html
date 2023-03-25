@@ -1,1 +1,14 @@
-<p>route-list works!</p>
+<div class="row">
+  <div class="col-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h2 class="panel-title">Routes</h2>
+      </div>
+      <div class="panel-body">
+        <cpt-route-item
+          *ngFor="let routeItem of routes"
+          [route]="routeItem"></cpt-route-item>
+      </div>
+    </div>
+  </div>
+</div>

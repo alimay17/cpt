@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { DndModule } from 'ng2-dnd';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -46,8 +45,7 @@ import { RouteItemComponent } from './routes/route-list/route-item/route-item.co
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
-    DndModule.forRoot()
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
