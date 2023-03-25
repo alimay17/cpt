@@ -3,6 +3,11 @@ img {
   border-radius: 10px;
 }
 
-.nav-item a, a {
+.nav-item a, p{
   color: #f5f5dc;
 }
+
+.navbar-toggler {
+  color: #f5f5dc;
+}
+
