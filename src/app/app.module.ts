@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { DndModule } from 'ng2-dnd';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header.component';
@@ -17,7 +20,6 @@ import { ShipListComponent } from './ships/ship-list/ship-list.component';
 import { PilotEditComponent } from './pilots/pilot-edit/pilot-edit.component';
 import { PilotDetailComponent } from './pilots/pilot-detail/pilot-detail.component';
 import { PilotListComponent } from './pilots/pilot-list/pilot-list.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PilotItemComponent } from './pilots/pilot-list/pilot-item/pilot-item.component';
 
 @NgModule({
@@ -43,6 +45,7 @@ import { PilotItemComponent } from './pilots/pilot-list/pilot-item/pilot-item.co
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    DndModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

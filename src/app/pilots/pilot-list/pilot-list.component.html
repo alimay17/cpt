@@ -21,7 +21,7 @@
       </div>
       <div class="panel-body">
         <ng-container *ngFor="let pilotItem of pilots">
-          <cpt-pilot-item 
+          <cpt-pilot-item
             [pilot]="pilotItem"
             *ngIf="pilotItem.status === 'Inactive'">
           </cpt-pilot-item>
