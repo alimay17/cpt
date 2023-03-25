@@ -18,6 +18,7 @@ import { PilotEditComponent } from './pilots/pilot-edit/pilot-edit.component';
 import { PilotDetailComponent } from './pilots/pilot-detail/pilot-detail.component';
 import { PilotListComponent } from './pilots/pilot-list/pilot-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PilotItemComponent } from './pilots/pilot-list/pilot-item/pilot-item.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ShipListComponent,
     PilotEditComponent,
     PilotDetailComponent,
-    PilotListComponent
+    PilotListComponent,
+    PilotItemComponent
   ],
   imports: [
     BrowserModule,

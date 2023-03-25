@@ -1,1 +1,22 @@
-<p>pilot-list works!</p>
+<div class="row">
+  <div class="col-xs-12">
+    <button type="button" class="btn btn-dark">Add Pilot</button>
+  </div>
+</div>
+<hr>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row vertical-align">
+      <div class="col-sm-6">
+        <h2 class="panel-title">Pilots</h2>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <cpt-pilot-item 
+      *ngFor="let pilotItem of pilots"
+      [pilot]="pilotItem"
+      >
+    </cpt-pilot-item>
+  </div>
+</div>
