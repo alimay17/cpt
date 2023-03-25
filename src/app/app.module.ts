@@ -40,7 +40,7 @@ import { RouteItemComponent } from './routes/route-list/route-item/route-item.co
     PilotDetailComponent,
     PilotListComponent,
     PilotItemComponent,
-    RouteItemComponent
+    RouteItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,28 @@
-<p>ship-list works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="panel panel-default">
+      <h2 class="panel-title">Ships Status</h2>
+    </div>
+    <div class="panel-body">
+
+    </div>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-dark">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Ship Id</th>
+        <th scope="col">Assigned Route</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr *ngFor="let shipItem of ships">
+        <th scope="row">{{ shipItem.shipId }}</th>
+        <td>{{ shipItem.assignedRoute?.name }}</td>
+        <td>{{ shipItem.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
