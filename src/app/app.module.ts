@@ -21,6 +21,7 @@ import { PilotEditComponent } from './pilots/pilot-edit/pilot-edit.component';
 import { PilotDetailComponent } from './pilots/pilot-detail/pilot-detail.component';
 import { PilotListComponent } from './pilots/pilot-list/pilot-list.component';
 import { PilotItemComponent } from './pilots/pilot-list/pilot-item/pilot-item.component';
+import { RouteItemComponent } from './routes/route-list/route-item/route-item.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { PilotItemComponent } from './pilots/pilot-list/pilot-item/pilot-item.co
     PilotEditComponent,
     PilotDetailComponent,
     PilotListComponent,
-    PilotItemComponent
+    PilotItemComponent,
+    RouteItemComponent
   ],
   imports: [
     BrowserModule,
