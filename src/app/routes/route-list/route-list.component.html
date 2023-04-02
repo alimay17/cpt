@@ -1,7 +1,6 @@
-<h2>Routes</h2>
-
+<h2>Routes Overview</h2>
 <div class="table-responsive">
-  <table class="table">
+  <table class="table table-hoverable">
     <thead class="table-dark">
       <tr>
         <th scope="col">Quadrant</th>
@@ -10,7 +9,7 @@
       </tr>
     </thead>
     <tbody class="table-group-divider">
-      <tr *ngFor="let route of routes">
+      <tr *ngFor="let route of routes" >
         <th scope="row">{{ route.quadrant }}</th>
         <td>{{ route.name }}</td>
         <td [ngStyle]="{ 'background-color': route.status === 'On Time'? 'green' : 'red' }">{{ route.status }}</td>

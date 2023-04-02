@@ -1,1 +1,34 @@
-<p>route-detail works!</p>
+<div class="card bg-secondary">
+  <div class="card-body">
+    <h4 class="card-title">Route name placeholder</h4>
+    <button class="btn btn-primary card-link">Edit Route</button>
+    <button class="btn btn-danger card-link">Delete Route</button>
+  </div>
+  <div class="card-body text-center">
+    <div class="card-header text-bg-dark">Status</div>
+      <p class="card-text">status placeholder</p>
+      <button class="btn btn-warning">Change Status</button>
+  </div>
+  <div class="card-body">
+    <div class="card-header text-bg-dark">Route Info</div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Route Quadrant</li>
+      <li class="list-group-item">Assigned ship</li>
+      <li class="list-group-item">Assigned Pilot</li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <div class="card-header text-bg-dark">Stops</div>
+    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+      <ngb-panel title="Stop ID">
+        <ng-template ngbPanelContent>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Stop Time</li>
+            <li class="list-group-item">location</li>
+            <li class="list-group-item">Average Riders</li>
+          </ul>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+</div>
