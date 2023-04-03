@@ -9,7 +9,10 @@
       </tr>
     </thead>
     <tbody class="table-group-divider">
-      <tr *ngFor="let route of routes" >
+      <tr 
+        *ngFor="let route of routes" 
+        [routerLink]="[route.id]"
+        routerLinkActive="active" >
         <th scope="row">{{ route.quadrant }}</th>
         <td>{{ route.name }}</td>
         <td [ngStyle]="{ 'background-color': route.status === 'On Time'? 'green' : 'red' }">{{ route.status }}</td>

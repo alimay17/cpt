@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+// import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Route } from './route.model';
 
 
@@ -21,13 +21,14 @@ export class RouteService {
 
   // constructor
   constructor(
-    private httpClient: HttpClient
+    // private httpClient: HttpClient;
   ) { }
 
   /*============ Server Connection Methods =============*/
   
     getRoutes() {
       this.routes = mockRoutes; 
+      this.routesChangedEvent.next(this.routes.slice());
     }
 
     // get route by id

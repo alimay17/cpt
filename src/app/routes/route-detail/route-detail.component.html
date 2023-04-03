@@ -1,11 +1,11 @@
 <div class="card bg-secondary">
   <div class="card-body">
-    <h4 class="card-title">Route name placeholder</h4>
+    <h4 class="card-title">Route: {{route.name}}</h4>
     <button class="btn btn-primary card-link">Edit Route</button>
     <button class="btn btn-danger card-link">Delete Route</button>
   </div>
   <div class="card-body text-center">
-    <div class="card-header text-bg-dark">Status</div>
+    <div class="card-header text-bg-dark">{{route.status}}</div>
       <p class="card-text">status placeholder</p>
       <button class="btn btn-warning">Change Status</button>
   </div>
@@ -19,13 +19,19 @@
   </div>
   <div class="card-body">
     <div class="card-header text-bg-dark">Stops</div>
-    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-      <ngb-panel title="Stop ID">
+    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0"
+      *ngFor="let stop of route.stops">
+      <ngb-panel>
+        <ng-template ngbPanelTitle >
+          <h5>Stop: {{stop.stopId}}</h5>
+        </ng-template>
         <ng-template ngbPanelContent>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">Stop Time</li>
-            <li class="list-group-item">location</li>
-            <li class="list-group-item">Average Riders</li>
+            <li class="list-group-item">
+              <span class="bold">Stop Time: </span> {{stop.stopTime}}
+            </li>
+            <li class="list-group-item">Location: {{stop.location}}</li>
+            <li class="list-group-item">Average Riders: {{stop.averageRiders}}</li>
           </ul>
         </ng-template>
       </ngb-panel>

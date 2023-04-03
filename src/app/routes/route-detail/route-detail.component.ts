@@ -21,14 +21,12 @@ export class RouteDetailComponent implements OnInit {
 
   // implements
   ngOnInit(): void {
-    // this.myRoute.params.subscribe(
-    //   (params: Params) => {
-    //     let id = params['id'];
-    //     // this.route = this.routeService.getRoute(id)!;
-
-    //     console.log(this.route, ' : ', id);
-    //   }
-    // )
+    this.myRoute.params.subscribe(
+      (params: Params) => {
+        let id = params['id'];
+        this.route = this.routeService.getRoute(id)!;
+      }
+    )
   }
 
 }
