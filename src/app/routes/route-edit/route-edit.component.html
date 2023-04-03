@@ -43,7 +43,47 @@
           </div>
           <div class="col-md-6 form-group">
             <h4>Route Stops</h4>
-            <button class="btn btn-primary" (click)="onAddStop()">Add New Stop</button>
+            <button class="btn btn-primary" (click)="collapse.toggle()">Add New Stop</button>
+            <div 
+              #collapse="ngbCollapse" 
+              [(ngbCollapse)]="isCollapsed" 
+              class="form-group">
+              <ul class="list-group list-group-flush form-control">
+                <li class="list-group-item">
+                  <label for="stopTime">Stop Time: </label>
+                  <input
+                    [ngModel]=""
+                    type="text" 
+                    name="stopTime" 
+                    id="stopTime"
+                    class="form-control">
+                </li>
+                <li class="list-group-item">
+                  <label for="stopLocation">Stop Location: </label>
+                  <input
+                    [ngModel]=""
+                    type="text" 
+                    name="stopLocation" 
+                    id="stopLocation"
+                    class="form-control">
+                </li>
+                <li class="list-group-item">
+                  <label for="averageRiders">Average Riders: </label>
+                  <input
+                    [ngModel]=""
+                    type="number" 
+                    name="averageRiders" 
+                    id="averageRiders"
+                    class="form-control">
+                </li>
+              </ul>
+              <div class="btn-group">
+                <button 
+                  type="button" 
+                  class="btn btn-info"
+                  (click)="onAddStop()">Save</button>
+              </div>
+            </div>
               <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0"
                 *ngFor="let stop of route.stops">
                 <ngb-panel>
