@@ -5,7 +5,7 @@
       <tr>
         <th scope="col">Quadrant</th>
         <th scope="col">Route Name</th>
-        <th scope="col">Status</th>
+        <th scope="col">On Time</th>
       </tr>
     </thead>
     <tbody class="table-group-divider">
@@ -15,7 +15,9 @@
         routerLinkActive="active" >
         <th scope="row">{{ route.quadrant }}</th>
         <td>{{ route.name }}</td>
-        <td [ngStyle]="{ 'background-color': route.status === 'On Time'? 'green' : 'red' }">{{ route.status }}</td>
+        <td [ngStyle]="{ 'background-color': route.status? 'green' : 'red' }" >
+          {{route.status | toString }}
+        </td>
       </tr>
     </tbody>
   </table>

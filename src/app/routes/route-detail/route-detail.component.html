@@ -9,9 +9,11 @@
       class="btn btn-danger card-link">Delete Route</button>
   </div>
   <div class="card-body text-center">
-    <div class="card-header text-bg-dark">{{route.status}}</div>
+    <div class="card-header text-bg-dark">{{route.status | toString}}</div>
       <p class="card-text">status placeholder</p>
-      <button class="btn btn-warning">Change Status</button>
+      <button
+        (click)="onChangeStatus()" 
+        class="btn btn-warning">Change Status</button>
   </div>
   <div class="card-body">
     <div class="card-header text-bg-dark">Route Info</div>

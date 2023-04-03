@@ -20,6 +20,7 @@ import { PilotEditComponent } from './pilots/pilot-edit/pilot-edit.component';
 import { PilotDetailComponent } from './pilots/pilot-detail/pilot-detail.component';
 import { PilotListComponent } from './pilots/pilot-list/pilot-list.component';
 import { PilotItemComponent } from './pilots/pilot-list/pilot-item/pilot-item.component';
+import { toString } from 'shared/toString.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,9 @@ import { PilotItemComponent } from './pilots/pilot-list/pilot-item/pilot-item.co
     PilotDetailComponent,
     PilotListComponent,
     PilotItemComponent,
+    
+    // pipes
+    toString,
   ],
   imports: [
     BrowserModule,

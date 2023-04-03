@@ -36,4 +36,8 @@ export class RouteDetailComponent implements OnInit {
     this.router.navigate(['/routes']);
   }
 
+  onChangeStatus(){
+    this.route.status = !this.route.status;
+  }
+
 }

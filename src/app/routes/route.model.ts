@@ -3,7 +3,7 @@ export class Route {
     public id: string,
     public name: string,
     public quadrant: string,
-    public status: string,
+    public status: boolean,
     public stops: Array<{
       stopId: number,
       stopTime: string,
