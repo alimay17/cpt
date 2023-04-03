@@ -50,4 +50,27 @@ export class RouteService {
       };
       return null;
     }
+
+    // Add
+    addRoute(newRoute: Route){
+
+    }
+
+    updateRoute(oldRoute: Route, newRoute: Route) {
+      const pos = this.routes.findIndex(r => r.id === oldRoute.id);
+
+      newRoute.id = oldRoute.id;
+      this.routes[pos] = newRoute;
+      this.routesChangedEvent.next(this.routes.slice());
+    }
+
+    // save individual route
+    saveStops(route: Route) {
+      const pos = this.routes.findIndex(r => r.id === route.id);
+      if(pos < 0) {
+        return;
+      }
+      this.routes[pos] = route;
+      this.routesChangedEvent.next(this.routes.slice());
+    }
 }
