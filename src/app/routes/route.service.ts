@@ -31,11 +31,20 @@ export class RouteService {
       this.routesChangedEvent.next(this.routes.slice());
     }
 
+    // delete one route
+    deleteRoute(route: Route) {
+      const pos = this.routes.findIndex(r => r.id === route.id);
+      if(pos < 0) {
+        return;
+      }
+      this.routes.splice(pos, 1);
+      this.routesChangedEvent.next(this.routes.slice());
+    }
+
     // get route by id
     getRoute(id: string): Route | null {
       for (const route of this.routes){
         if(route.id == id){
-          console.log(route);
           return route;
         }
       };

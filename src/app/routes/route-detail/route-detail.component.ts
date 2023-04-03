@@ -16,6 +16,7 @@ export class RouteDetailComponent implements OnInit {
   // constructor
   constructor(
     private routeService: RouteService,
+    private router: Router,
     private myRoute: ActivatedRoute
   ){}
 
@@ -27,6 +28,12 @@ export class RouteDetailComponent implements OnInit {
         this.route = this.routeService.getRoute(id)!;
       }
     )
+  }
+
+  // methods
+  onDelete(){
+    this.routeService.deleteRoute(this.route);
+    this.router.navigate(['/routes']);
   }
 
 }
