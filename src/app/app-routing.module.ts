@@ -6,6 +6,7 @@ import { RouteDetailComponent } from './routes/route-detail/route-detail.compone
 import { RouteEditComponent } from './routes/route-edit/route-edit.component';
 import { RoutesComponent } from './routes/routes.component';
 import { ShipDetailComponent } from './ships/ship-detail/ship-detail.component';
+import { ShipEditComponent } from './ships/ship-edit/ship-edit.component';
 import { ShipsComponent } from './ships/ships.component';
 
 const routes: Routes = [
@@ -21,6 +22,8 @@ const routes: Routes = [
   { path: 'ships', component: ShipsComponent, children:[
     { path: ':id', component: ShipDetailComponent }
   ] },
+  { path: 'ships/edit', component: ShipEditComponent },
+  { path: 'ships/:id/edit', component: ShipEditComponent },
 ];
 
 @NgModule({
