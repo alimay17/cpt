@@ -13,17 +13,18 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   // routes
   { path: 'routes', component: RoutesComponent, children:[
-    { path: ':id', component: RouteDetailComponent }
+  //   { path: ':id', component: RouteDetailComponent },
+  //   { path: 'new', component: RouteEditComponent },
+  //   { path: ':id/edit', component: RouteEditComponent },
+
   ] },
-  { path: 'routes/edit', component: RouteEditComponent },
-  { path: 'routes/:id/edit', component: RouteEditComponent },
 
   //ships
-  { path: 'ships', component: ShipsComponent, children:[
-    { path: ':id', component: ShipDetailComponent }
-  ] },
-  { path: 'ships/edit', component: ShipEditComponent },
-  { path: 'ships/:id/edit', component: ShipEditComponent },
+  // { path: 'ships', component: ShipsComponent, children:[
+  //   { path: ':id', component: ShipDetailComponent }
+  // ] },
+  // { path: 'ships/edit', component: ShipEditComponent },
+  // { path: 'ships/:id/edit', component: ShipEditComponent },
 ];
 
 @NgModule({
