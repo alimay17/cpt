@@ -12,6 +12,11 @@ var index = require('./server/routes/app');
 
 var app = express(); // create an instance of express
 
+// connect to mongo db
+mongoose.connect('mongodb://127.0.0.1:27017/cpt', {useNewUrlParser: true})
+.then(()=> {console.log('Connected to Database!')})
+.catch(error => {console.log('Connection Failed: ', error)});
+
 // Tell express to use the following parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
