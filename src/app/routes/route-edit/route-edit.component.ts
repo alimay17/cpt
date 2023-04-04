@@ -17,14 +17,14 @@ export class RouteEditComponent implements OnInit{
   newStop = {
     stopId: -1,
     stopTime: '',
-    averageRiders: -1,
+    averageRiders: 0,
     location: '',
   }
   editMode: boolean = false;
   id!: string;
   stopSave: boolean = true;
   isCollapsed = true;
-  @ViewChild('f') routeForm!: NgForm;
+  @ViewChild('s') stopsForm!: NgForm;
 
   // constructor
   constructor(
@@ -54,11 +54,11 @@ export class RouteEditComponent implements OnInit{
 
   // methods
   onCancel() {
-    this.router.navigate(['../'], {relativeTo: this.path});
-
+    this.router.navigate(['routes']);
   }
 
   onSubmit(form: NgForm){
+    console.log('onsubmit');
     let value = form.value;
     this.route.name = value.name;
     this.route.quadrant = value.quadrant;
@@ -74,17 +74,31 @@ export class RouteEditComponent implements OnInit{
     this.stopSave = false;
   }
 
+  onCancelStop(){
+    // reset new stop to default
+    this.newStop = {
+      stopId: -1,
+      stopTime: '',
+      averageRiders: 0,
+      location: '',
+    }
+    this.isCollapsed = true;
+  }
+
   onAddStop(){
     // get and assign stop data
-    const form = this.routeForm.controls;
+    const form = this.stopsForm.controls;
     this.newStop.stopId = this.generateStopId();
-    this.newStop.stopTime = form['stopTime'].value;
-    this.newStop.location = form['stopLocation'].value;
-    this.newStop.averageRiders = form['averageRiders'].value;
+    this.newStop.stopTime = form['newStopTime'].value;
+    this.newStop.location = form['newStopLocation'].value;
+    this.newStop.averageRiders = form['newAverageRiders'].value;
 
     // add new stop
     this.route.stops.push(this.newStop);
-    this.routeService.saveStops(this.route);
+    if(this.editMode){
+      console.log('edit mode');
+      this.routeService.saveStops(this.route);
+    }
     
     // reset new stop to default
     this.newStop = {
@@ -98,11 +112,12 @@ export class RouteEditComponent implements OnInit{
 
   onSaveStop(stopId: number){
     const pos = this.route.stops.findIndex(s => s.stopId === stopId);
-    this.route.stops[pos].stopTime = this.routeForm.controls['stopTime'].value;
-    this.route.stops[pos].location = this.routeForm.controls['stopLocation'].value;
-    this.route.stops[pos].stopTime = this.routeForm.controls['stopTime'].value;
+    this.route.stops[pos].stopTime = this.stopsForm.controls['stopTime'].value;
+    this.route.stops[pos].location = this.stopsForm.controls['stopLocation'].value;
+    this.route.stops[pos].stopTime = this.stopsForm.controls['stopTime'].value;
 
     this.stopSave = true;
+
     this.routeService.saveStops(this.route);
 
   }
@@ -114,11 +129,9 @@ export class RouteEditComponent implements OnInit{
     this.routeService.saveStops(this.route);
   }
 
-
   private generateStopId(){
     const min = Math.ceil(10000);
     const max = Math.floor(99999);
     return Math.floor(Math.random() * (max - min) + min);
   }
-
 }
