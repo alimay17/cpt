@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+h2 {
+  text-align: center;
+}
+
+.content {
+  background-color: #9b84a0;
+  padding: 10px;
+  border: 2px solid #000000;
+}

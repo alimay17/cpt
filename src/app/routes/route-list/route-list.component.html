@@ -1,0 +1,24 @@
+<h2>Routes Overview</h2>
+<div class="table-responsive">
+  <table class="table table-hoverable">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Quadrant</th>
+        <th scope="col">Route Name</th>
+        <th scope="col">On Time</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr 
+        *ngFor="let route of routes" 
+        [routerLink]="[route.id]"
+        routerLinkActive="active" >
+        <th scope="row">{{ route.quadrant }}</th>
+        <td>{{ route.name }}</td>
+        <td [ngStyle]="{ 'background-color': route.status? 'green' : 'red' }" >
+          {{route.status | toString }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

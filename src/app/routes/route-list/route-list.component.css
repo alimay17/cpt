@@ -1,0 +1,7 @@
+tbody td, tbody th {
+  color: #000000;
+}
+
+td:hover, th:hover{
+  cursor: pointer;
+}
