@@ -17,9 +17,6 @@
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" routerLink="/routes" (click)="isMenuCollapsed = true">Stats</a>
           </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLink="/ships" (click)="isMenuCollapsed = true">Manage</a>
-          </li>
         </ul>
       </div>
     </div>
@@ -32,8 +29,8 @@
   <div class="row">
     <div class="btn-group">
       <a class="btn btn-outline-secondary" routerLink="routes" routerLinkActive="active">Manage Routes</a>
-      <a class="btn btn-outline-secondary" routerLink="ships">Manage Ships</a>
-      <a class="btn btn-outline-secondary" routerLink="pilots">Manage Pilots</a>
+      <a class="btn btn-outline-secondary" routerLink="ships" routerLinkActive="active">Manage Ships</a>
+      <a class="btn btn-outline-secondary" routerLink="pilots"routerLinkActive="active">Manage Pilots</a>
     </div>
   </div>
 </div>

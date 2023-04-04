@@ -12,7 +12,9 @@
     <tbody class="table-group-divider">
       <tr 
         *ngFor="let ship of ships"
-        [ngClass]="{inactive: ship.status === 'Inactive'}">
+        [ngClass]="{inactive: ship.status === 'Inactive'}"
+        [routerLink]="[ship.shipId]"
+        routerLinkActive="active">
         <th scope="row">{{ ship.shipId }}</th>
         <td>{{ ship.assignedRoute?.name }}</td>
         <td >{{ ship.status }}</td>
