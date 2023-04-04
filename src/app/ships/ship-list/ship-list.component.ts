@@ -1,21 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import { Ship } from '../ship.model';
-import { mockShips } from '../mockShipData';
+import { ShipService } from '../ship.service';
 
 @Component({
   selector: 'cpt-ship-list',
   templateUrl: './ship-list.component.html',
   styleUrls: ['./ship-list.component.css']
 })
-export class ShipListComponent implements OnInit{
+export class ShipListComponent implements OnInit, OnDestroy{
   // properties
   ships!: Ship[];
+  private sub!: Subscription;
 
   // constructor
-  constructor(){}
+  constructor(
+    private shipService: ShipService
+  ){}
 
   // implements
   ngOnInit(): void {
-    this.ships = mockShips;
+    this.sub = this.shipService.shipsChangedEvent.subscribe(
+      (ships: Ship[]) => {
+        this.ships = ships;
+      }
+    )
+    this.shipService.getShips();
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

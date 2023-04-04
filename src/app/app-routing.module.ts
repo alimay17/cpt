@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { RouteDetailComponent } from './routes/route-detail/route-detail.component';
 import { RouteEditComponent } from './routes/route-edit/route-edit.component';
 import { RoutesComponent } from './routes/routes.component';
+import { ShipDetailComponent } from './ships/ship-detail/ship-detail.component';
+import { ShipsComponent } from './ships/ships.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,7 +15,12 @@ const routes: Routes = [
     { path: ':id', component: RouteDetailComponent }
   ] },
   { path: 'routes/edit', component: RouteEditComponent },
-  { path: 'routes/:id/edit', component: RouteEditComponent }
+  { path: 'routes/:id/edit', component: RouteEditComponent },
+
+  //ships
+  { path: 'ships', component: ShipsComponent, children:[
+    { path: ':id', component: ShipDetailComponent }
+  ] },
 ];
 
 @NgModule({
