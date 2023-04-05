@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-// import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Route } from './route.model';
 
 
@@ -21,27 +21,24 @@ export class RouteService {
 
   // constructor
   constructor(
-    // private httpClient: HttpClient
+    private httpClient: HttpClient
   ) {}
 
   /*============ Server Connection Methods =============*/
 
   getRoutes() {
-    console.log('get routes');
-    // this.httpClient.get<{message:string, content:Route[]}>(this.url)
-    // .subscribe({
-    //   next: (response) => {
-    //     this.routes = response.content;
-    //     this.routesChangedEvent.next(this.routes.slice());
+    this.httpClient.get<{message:string, content:Route[]}>(this.url)
+    .subscribe({
+      next: (response) => {
+        this.routes = response.content;
+        this.routesChangedEvent.next(this.routes.slice());
 
-    //   },
-    //   // handle errors
-    //   error: (error:any) => {
-    //     console.log(error.message);
-    //   }
-    // });
-    this.routes = mockRoutes;
-    this.routesChangedEvent.next(this.routes.slice());
+      },
+      // handle errors
+      error: (error:any) => {
+        console.log(error.message);
+      }
+    });
   }
 
   // delete one route
