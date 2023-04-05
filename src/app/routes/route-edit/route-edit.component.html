@@ -32,6 +32,24 @@
           type="text" 
           name="quadrant"
           id="quadrant"
+          class="form-control required">        
+        <label for="status">Assigned Pilot: </label>
+        <input
+          required
+          [ngModel]="route.pilot"
+          #quadrant="ngModel"
+          type="text" 
+          name="pilot"
+          id="pilot"
+          class="form-control required">
+        <label for="status">Assigned Ship: </label>
+        <input
+          required
+          [ngModel]="route.ship"
+          #quadrant="ngModel"
+          type="text" 
+          name="ship"
+          id="ship"
           class="form-control required">
         <label for="status">Route Status: </label>
         <select

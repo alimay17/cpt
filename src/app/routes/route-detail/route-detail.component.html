@@ -3,9 +3,15 @@
   <div class="card-body">
     <h2 class="card-header text-bg-dark">Route: {{route.name}}</h2>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item list-group-item-secondary"><span class="bold">Route Quadrant: </span> {{route.quadrant}}</li>
-        <li class="list-group-item list-group-item-secondary"><span class="bold">Assigned Ship: </span> </li>
-        <li class="list-group-item list-group-item-secondary"><span class="bold">Assigned Pilot: </span> </li>
+        <li class="list-group-item list-group-item-secondary">
+          <span class="bold">Route Quadrant: </span> {{route.quadrant}}
+        </li>
+        <li class="list-group-item list-group-item-secondary">
+          <span class="bold">Assigned Ship: {{route.ship}}</span> 
+        </li>
+        <li class="list-group-item list-group-item-secondary">
+          <span class="bold">Assigned Pilot: {{route.pilot}}</span>
+        </li>
         <li class="list-group-item list-group-item-secondary">
           <div class="btn-group d-flex justify-content-center">
             <button

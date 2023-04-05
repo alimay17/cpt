@@ -14,7 +14,7 @@ export class RouteEditComponent implements OnInit {
 
   // properties
   originalRoute!: Route;
-  route: Route = new Route('', '', '', false, []);
+  route: Route = new Route('', '', '', '', '', false, []);
   newStop = {
     stopId: -1,
     stopTime: '',
@@ -52,7 +52,7 @@ export class RouteEditComponent implements OnInit {
         this.editMode = true;
         this.route = JSON.parse(JSON.stringify(this.originalRoute));
       }
-    )
+    );
   }
 
   /*----------  general route methods  ----------*/
@@ -64,6 +64,8 @@ export class RouteEditComponent implements OnInit {
     let value = form.value;
     this.route.name = value.name;
     this.route.quadrant = value.quadrant;
+    this.route.pilot = value.pilot;
+    this.route.ship = value.ship;
     this.route.status = value.status;
     if (this.editMode) {
       this.routeService.updateRoute(this.originalRoute, this.route);

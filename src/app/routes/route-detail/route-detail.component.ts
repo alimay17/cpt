@@ -25,9 +25,12 @@ export class RouteDetailComponent implements OnInit {
     this.myRoute.params.subscribe(
       (params: Params) => {
         let id = params['id'];
-        this.route = this.routeService.getRoute(id) !;
+        this.route = this.routeService.getRoute(id)!;
       }
     )
+    this.routeService.routesChangedEvent.subscribe(() => {
+      this.route = this.routeService.getRoute(this.route.id)!;
+    })
   }
 
   // methods
