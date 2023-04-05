@@ -25,7 +25,8 @@ export class RouteEditComponent implements OnInit{
   id!: string;
   stopSave: boolean = true;
   isCollapsed = true;
-  @ViewChild('s') stopsForm!: NgForm;
+  @ViewChild('sNew') newStopsForm!: NgForm;
+  @ViewChild('sEdit') editStopsForm!: NgForm;
 
   // constructor
   constructor(
@@ -85,12 +86,7 @@ export class RouteEditComponent implements OnInit{
       this.routeService.updateRoute(this.originalRoute, this.route);
     }
     
-    this.newStop = {
-      stopId: -1,
-      stopTime: '',
-      averageRiders: -1,
-      location: '',
-    }
+    this.stopsForm.reset();
     this.isCollapsed = true;
   }
 
