@@ -8,11 +8,14 @@ import { RoutesComponent } from './routes/routes.component';
 
 const routes: Routes = [
   // routes
-  { path: '', component: RoutesComponent, children: [
+  { path: 'routes', component: RoutesComponent, children: [
     { path: 'new', component: RouteEditComponent },
     { path: ':id', component: RouteDetailComponent },
     { path: ':id/edit', component: RouteEditComponent },
-  ]}
+  ]},
+
+  // default
+  {path: '', redirectTo: '/routes', pathMatch: 'full'}
 ];
 
 @NgModule({

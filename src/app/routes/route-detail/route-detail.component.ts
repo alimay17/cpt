@@ -38,6 +38,7 @@ export class RouteDetailComponent implements OnInit {
 
   onChangeStatus(){
     this.route.status = !this.route.status;
+    this.routeService.updateRoute(this.route, this.route);
   }
 
 }

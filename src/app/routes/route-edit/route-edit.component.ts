@@ -66,7 +66,6 @@ export class RouteEditComponent implements OnInit{
     this.route.status = value.status;
     if(this.editMode){
       this.routeService.updateRoute(this.originalRoute, this.route);
-      this.editMode = false;
     } else {
       this.routeService.addRoute(this.route);
     }
@@ -83,9 +82,7 @@ export class RouteEditComponent implements OnInit{
 
     this.route.stops.push(this.newStop);
     if(this.editMode){
-      console.log(this.route);
       this.routeService.updateRoute(this.originalRoute, this.route);
-      this.editMode = false;
     }
     
     this.newStop = {
@@ -104,7 +101,6 @@ export class RouteEditComponent implements OnInit{
     this.route.stops[pos].stopTime = this.stopsForm.controls['stopTime'].value;
 
     this.stopSave = true;
-    console.log(this.route);
     this.routeService.updateRoute(this.originalRoute, this.route);
   }
 

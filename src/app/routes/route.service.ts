@@ -33,7 +33,6 @@ export class RouteService {
         this.routesChangedEvent.next(this.routes.slice());
 
       },
-      // handle errors
       error: (error:any) => {
         console.log(error.message);
       }
@@ -67,6 +66,7 @@ export class RouteService {
     if (!oldRoute || !newRoute) {
       return;
     }
+
     const pos = this.routes.findIndex(r => r.id === oldRoute.id);
     if (pos < 0) {
       return;
@@ -84,6 +84,8 @@ export class RouteService {
       }
     );
   }
+
+
 
   // delete one route
   deleteRoute(route: Route) {

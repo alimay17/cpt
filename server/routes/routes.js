@@ -47,9 +47,10 @@ router.post('/', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
   Route.findOne({ id: req.params.id })
     .then(route => {
-      route.name = req.body.name;
-      route.description = req.body.description;
-      route.url = req.body.url;
+      route.name = req.body.name,
+      route.quadrant = req.body.quadrant,
+      route.status = req.body.status,
+      route.stops = req.body.stops
 
       Route.updateOne({ id: req.params.id }, route)
         .then(result => {
