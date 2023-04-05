@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { RouteDetailComponent } from './routes/route-detail/route-detail.component';
 import { RouteEditComponent } from './routes/route-edit/route-edit.component';
 
@@ -8,18 +7,22 @@ import { RoutesComponent } from './routes/routes.component';
 
 const routes: Routes = [
   // routes
-  { path: 'routes', component: RoutesComponent, children: [
-    { path: 'new', component: RouteEditComponent },
-    { path: ':id', component: RouteDetailComponent },
-    { path: ':id/edit', component: RouteEditComponent },
-  ]},
+  {
+    path: 'routes',
+    component: RoutesComponent,
+    children: [
+      { path: 'new', component: RouteEditComponent },
+      { path: ':id', component: RouteDetailComponent },
+      { path: ':id/edit', component: RouteEditComponent },
+    ]
+  },
 
   // default
-  {path: '', redirectTo: '/routes', pathMatch: 'full'}
+  { path: '', redirectTo: '/routes', pathMatch: 'full' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

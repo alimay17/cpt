@@ -1,4 +1,5 @@
-td:hover, th:hover{
+td:hover,
+th:hover {
   cursor: pointer;
 }
 
