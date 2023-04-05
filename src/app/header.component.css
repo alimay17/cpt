@@ -1,13 +1,4 @@
 img {
-  height: 50px;
+  height: 60px;
   border-radius: 10px;
 }
-
-.nav-item a, p{
-  color: #f5f5dc;
-}
-
-.navbar-toggler {
-  color: #f5f5dc;
-}
-

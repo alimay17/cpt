@@ -1,7 +1,13 @@
-tbody td, tbody th {
-  color: #000000;
+td:hover,
+th:hover {
+  cursor: pointer;
 }
 
-td:hover, th:hover{
-  cursor: pointer;
+.purple {
+  background-color: #503f53;
+  color: white;
+}
+
+.table-responsive {
+  border-radius: 5px;
 }

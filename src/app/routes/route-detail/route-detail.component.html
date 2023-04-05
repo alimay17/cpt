@@ -1,32 +1,51 @@
 <div class="card bg-secondary">
+  <!------------------ Route Details --------------------->
   <div class="card-body">
-    <h4 class="card-header text-bg-dark">Route: {{route.name}}</h4>
+    <h2 class="card-header text-bg-dark">Route: {{route.name}}</h2>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Route Quadrant: {{route.quadrant}}</li>
-        <li class="list-group-item">Assigned ship</li>
-        <li class="list-group-item">Assigned Pilot</li>
+        <li class="list-group-item list-group-item-secondary">
+          <span class="bold">Route Quadrant: </span> {{route.quadrant}}
+        </li>
+        <li class="list-group-item list-group-item-secondary">
+          <span class="bold">Assigned Ship: {{route.ship}}</span> 
+        </li>
+        <li class="list-group-item list-group-item-secondary">
+          <span class="bold">Assigned Pilot: {{route.pilot}}</span>
+        </li>
+        <li class="list-group-item list-group-item-secondary">
+          <div class="btn-group d-flex justify-content-center">
+            <button
+              routerLink="edit"
+              class="btn btn-secondary card-link">Edit Route</button>
+            <button
+              (click)="onDelete()" 
+              class="btn btn-outline-danger card-link">Delete Route</button>
+          </div>
+        </li>
       </ul>
-      <button
-      routerLink="edit"
-      class="btn btn-primary card-link">Edit Route</button>
-    <button
-      (click)="onDelete()" 
-      class="btn btn-danger card-link">Delete Route</button>
   </div>
+
+  <!------------------ Route Status --------------------->
   <div class="card-body">
-    <h4 class="card-header text-bg-dark">Status</h4>
-    <div class="card-body text-bg-light text-center">
-      <h5
+    <h3 class="card-header text-bg-dark">Status</h3>
+    <div class="card-body text-bg-dark text-center">
+      <div
+        id="status"
         class="card-body alert text-light"
-        [ngStyle]="{ 'background-color': route.status? 'green' : 'red' }">
-        {{route.status | toString}}</h5>
-      <button
-        (click)="onChangeStatus()" 
-        class="btn btn-warning">Change Status</button>
+        [ngStyle]="{ 'background-color': route.status? '#9b84a0' : '#F85025' }">
+        {{route.status | toString}}
+        <div class="btn-group d-flex justify-content-center">
+          <button
+          (click)="onChangeStatus()" 
+          class="btn btn-dark">Change Status</button>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!------------------ Route Stops --------------------->
   <div class="card-body">
-    <h4 class="card-header text-bg-dark">Stops</h4>
+    <h3 class="card-header text-bg-dark">Stops</h3>
     <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0"
       *ngFor="let stop of route.stops">
       <ngb-panel>
@@ -35,11 +54,11 @@
         </ng-template>
         <ng-template ngbPanelContent>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">
+            <li class="list-group-item list-group-item-secondary">
               <span class="bold">Stop Time: </span> {{stop.stopTime}}
             </li>
-            <li class="list-group-item">Location: {{stop.location}}</li>
-            <li class="list-group-item">Average Riders: {{stop.averageRiders}}</li>
+            <li class="list-group-item list-group-item-secondary"><span class="bold">Location: </span> {{stop.location}}</li>
+            <li class="list-group-item list-group-item-secondary"><span class="bold">Average Riders: </span> {{stop.averageRiders}}</li>
           </ul>
         </ng-template>
       </ngb-panel>

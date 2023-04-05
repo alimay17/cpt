@@ -1,0 +1,27 @@
+label {
+  font-weight: bold;
+}
+
+.btn-group {
+  margin: 5px;
+}
+
+.btn-secondary {
+  background-color: #503f53;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  color: #000000;
+  background-color: #9b84a0;
+}
+
+.btn-outline-danger {
+  border-color: #F85025;
+  color: #F85025;
+}
+
+.btn-outline-danger:hover {
+  background-color: #F85025;
+  color: black;
+}
