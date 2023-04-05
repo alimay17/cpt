@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-// import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Route } from './route.model';
-
-
-import { mockRoutes } from './mockRouteData';
 
 
 @Injectable({
@@ -21,38 +19,93 @@ export class RouteService {
 
   // constructor
   constructor(
-    // private httpClient: HttpClient
+    private httpClient: HttpClient
   ) {}
 
   /*============ Server Connection Methods =============*/
 
+  // get all routes
   getRoutes() {
-    console.log('get routes');
-    // this.httpClient.get<{message:string, content:Route[]}>(this.url)
-    // .subscribe({
-    //   next: (response) => {
-    //     this.routes = response.content;
-    //     this.routesChangedEvent.next(this.routes.slice());
+    this.httpClient.get<{message:string, content:Route[]}>(this.url)
+    .subscribe({
+      next: (response) => {
+        this.routes = response.content;
+        this.routesChangedEvent.next(this.routes.slice());
 
-    //   },
-    //   // handle errors
-    //   error: (error:any) => {
-    //     console.log(error.message);
-    //   }
-    // });
-    this.routes = mockRoutes;
-    this.routesChangedEvent.next(this.routes.slice());
+      },
+      // handle errors
+      error: (error:any) => {
+        console.log(error.message);
+      }
+    });
+  }
+
+  // Add one route
+  addRoute(newRoute: Route) {
+    if (!newRoute) {
+      return;
+    }
+    newRoute.id = this.generateRouteId();
+
+    // add to database
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    this.httpClient.post<{ message: string, content: Route }>(
+      this.url,
+      newRoute,
+      { headers: headers })
+      .subscribe(
+        (response) => {
+          // update local documents
+          this.routes.push(response.content);
+          this.routesChangedEvent.next(this.routes.slice());
+        }
+      );
+  }
+
+  // update one route
+  updateRoute(oldRoute: Route, newRoute: Route) {
+    if (!oldRoute || !newRoute) {
+      return;
+    }
+    const pos = this.routes.findIndex(r => r.id === oldRoute.id);
+    if (pos < 0) {
+      return;
+    }
+    newRoute.id = oldRoute.id;
+    
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    this.httpClient.put(this.url + '/' + oldRoute.id,
+      newRoute, { headers: headers })
+    .subscribe(
+      (response) => {
+      // update local documents 
+      this.routes[pos] = newRoute;
+      this.routesChangedEvent.next(this.routes.slice());
+      }
+    );
   }
 
   // delete one route
   deleteRoute(route: Route) {
+    if (!route) {
+      return;
+    }
+
     const pos = this.routes.findIndex(r => r.id === route.id);
     if (pos < 0) {
       return;
     }
-    this.routes.splice(pos, 1);
-    this.routesChangedEvent.next(this.routes.slice());
+
+    this.httpClient.delete(this.url +'/' + route.id)
+    .subscribe(
+      (response) => {
+        this.routes.splice(pos, 1);
+        this.routesChangedEvent.next(this.routes.slice());
+      }
+    );
   }
+
+  /*========== internal helper methods ===========*/
 
   // get route by id
   getRoute(id: string): Route | null {
@@ -64,39 +117,14 @@ export class RouteService {
     return null;
   }
 
-  // Add
-  addRoute(newRoute: Route) {
-    newRoute.id = this.generateRouteId();
-    this.routes.push(newRoute);
-    this.routesChangedEvent.next(this.routes.slice());
-  }
-
-  updateRoute(oldRoute: Route, newRoute: Route) {
-    const pos = this.routes.findIndex(r => r.id === oldRoute.id);
-
-    newRoute.id = oldRoute.id;
-    this.routes[pos] = newRoute;
-    this.routesChangedEvent.next(this.routes.slice());
-  }
-
-  // save individual route
-  saveStops(route: Route) {
-    const pos = this.routes.findIndex(r => r.id === route.id);
-    if (pos < 0) {
-      return;
-    }
-    this.routes[pos] = route;
-    this.routesChangedEvent.next(this.routes.slice());
-  }
-
+  // generate random route id
   private generateRouteId() {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = ' ';
-    const charactersLength = characters.length;
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    const keyLength = 15;
+    var i, key = "", characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    var charactersLength = characters.length;
+    for (i = 0; i < keyLength; i++) {
+        key += characters.substr(Math.floor((Math.random() * charactersLength) + 1), 1);
     }
-
-    return result;
+    return key;
   }
 }

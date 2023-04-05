@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+
 import { Route } from '../route.model';
 import { RouteService } from '../route.service';
 
@@ -35,72 +36,58 @@ export class RouteEditComponent implements OnInit{
 
   // implements 
   ngOnInit(): void {
-      this.path.params.subscribe(
-        (params: Params) => {
-          let id = params['id'];
-          if(!id){
-            this.editMode = false;
-            return;
-          }
-          this.originalRoute = this.routeService.getRoute(id)!;
-          if(!this.originalRoute){
-            return;
-          }
-          this.editMode = true;
-          this.route = JSON.parse(JSON.stringify(this.originalRoute));
+    this.path.params.subscribe(
+      (params: Params) => {
+        let id = params['id'];
+        if(!id){
+          this.editMode = false;
+          return;
         }
-      )
+        this.originalRoute = this.routeService.getRoute(id)!;
+        if(!this.originalRoute){
+          return;
+        }
+        this.editMode = true;
+        this.route = JSON.parse(JSON.stringify(this.originalRoute));
+      }
+    )
   }
 
-  // methods
+  
+  /*----------  general route methods  ----------*/
   onCancel() {
-    this.router.navigate(['routes']);
+    this.router.navigate(['../'], {relativeTo: this.path});
   }
 
   onSubmit(form: NgForm){
-    console.log('onsubmit');
     let value = form.value;
     this.route.name = value.name;
     this.route.quadrant = value.quadrant;
     this.route.status = value.status;
     if(this.editMode){
       this.routeService.updateRoute(this.originalRoute, this.route);
+      this.editMode = false;
     } else {
       this.routeService.addRoute(this.route);
     }
+    this.onCancel();
   }
 
-  onEditStop(){
-    this.stopSave = false;
-  }
-
-  onCancelStop(){
-    // reset new stop to default
-    this.newStop = {
-      stopId: -1,
-      stopTime: '',
-      averageRiders: 0,
-      location: '',
-    }
-    this.isCollapsed = true;
-  }
-
+/*----------  route stops methods  ----------*/
   onAddStop(){
-    // get and assign stop data
     const form = this.stopsForm.controls;
     this.newStop.stopId = this.generateStopId();
     this.newStop.stopTime = form['newStopTime'].value;
     this.newStop.location = form['newStopLocation'].value;
     this.newStop.averageRiders = form['newAverageRiders'].value;
 
-    // add new stop
     this.route.stops.push(this.newStop);
     if(this.editMode){
-      console.log('edit mode');
-      this.routeService.saveStops(this.route);
+      console.log(this.route);
+      this.routeService.updateRoute(this.originalRoute, this.route);
+      this.editMode = false;
     }
     
-    // reset new stop to default
     this.newStop = {
       stopId: -1,
       stopTime: '',
@@ -117,16 +104,30 @@ export class RouteEditComponent implements OnInit{
     this.route.stops[pos].stopTime = this.stopsForm.controls['stopTime'].value;
 
     this.stopSave = true;
-
-    this.routeService.saveStops(this.route);
-
+    console.log(this.route);
+    this.routeService.updateRoute(this.originalRoute, this.route);
   }
 
   onDeleteStop(stopId: number){
     const pos = this.route.stops.findIndex(s => s.stopId === stopId);
     this.route.stops.splice(pos, 1);
     this.stopSave = true;
-    this.routeService.saveStops(this.route);
+    this.routeService.updateRoute(this.originalRoute, this.route);
+  }
+
+  onEditStop(){
+    this.stopSave = false;
+  }
+
+  onCancelStop(){
+    this.newStop = {
+      stopId: -1,
+      stopTime: '',
+      averageRiders: 0,
+      location: '',
+    }
+    this.stopSave = true;
+    this.isCollapsed = true;
   }
 
   private generateStopId(){
