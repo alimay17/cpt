@@ -1,6 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400&family=Syne:wght@700;800&display=swap');
 
-h2 {
+
+*{
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Syne', sans-serif;
   text-align: center;
 }
 
@@ -8,4 +15,9 @@ h2 {
   background-color: #9b84a0;
   padding: 10px;
   border: 2px solid #000000;
+  border-radius: 5px;
+}
+
+.row{
+  margin:5px;
 }

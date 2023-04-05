@@ -2,16 +2,18 @@
   <div class="card-body">
     <h4 class="card-header text-bg-dark">Route: {{route.name}}</h4>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Route Quadrant: {{route.quadrant}}</li>
-        <li class="list-group-item">Assigned ship</li>
-        <li class="list-group-item">Assigned Pilot</li>
+        <li class="list-group-item"><span class="bold">Route Quadrant: </span> {{route.quadrant}}</li>
+        <li class="list-group-item"><span class="bold">Assigned Ship: </span> </li>
+        <li class="list-group-item"><span class="bold">Assigned Pilot: </span> </li>
       </ul>
-      <button
-      routerLink="edit"
-      class="btn btn-primary card-link">Edit Route</button>
-    <button
-      (click)="onDelete()" 
-      class="btn btn-danger card-link">Delete Route</button>
+      <div class="btn-group d-flex justify-content-center">
+        <button
+          routerLink="edit"
+          class="btn btn-dark card-link">Edit Route</button>
+        <button
+          (click)="onDelete()" 
+          class="btn btn-outline-danger card-link">Delete Route</button>
+      </div>
   </div>
   <div class="card-body">
     <h4 class="card-header text-bg-dark">Status</h4>
@@ -22,7 +24,7 @@
         {{route.status | toString}}</h5>
       <button
         (click)="onChangeStatus()" 
-        class="btn btn-warning">Change Status</button>
+        class="btn btn-dark">Change Status</button>
     </div>
   </div>
   <div class="card-body">
@@ -38,8 +40,8 @@
             <li class="list-group-item">
               <span class="bold">Stop Time: </span> {{stop.stopTime}}
             </li>
-            <li class="list-group-item">Location: {{stop.location}}</li>
-            <li class="list-group-item">Average Riders: {{stop.averageRiders}}</li>
+            <li class="list-group-item"><span class="bold">Location: </span> {{stop.location}}</li>
+            <li class="list-group-item"><span class="bold">Average Riders: </span> {{stop.averageRiders}}</li>
           </ul>
         </ng-template>
       </ngb-panel>

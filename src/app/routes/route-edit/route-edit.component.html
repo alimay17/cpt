@@ -1,8 +1,181 @@
+<div class="card bg-secondary">
+  <div class="card-body">
+    <h2 class="card-header text-bg-dark">Edit Route {{route.name}} Route Details</h2>
+    <form 
+      id="route-edit" 
+      #f="ngForm" 
+      (ngSubmit)="onSubmit(f)"
+      class="form-control">
+      <div class="row">
+        <div class="form-group">
+          <label for="name">Route Name: </label>
+          <input
+            required
+            [ngModel]="route.name"
+            #name="ngModel" 
+            type="text" 
+            name="name" 
+            id="name"
+            class="form-control required"> 
+          <label for="quadrant">Route Quadrant: </label>
+          <input
+            required
+            [ngModel]="route.quadrant"
+            #quadrant="ngModel"
+            type="text" 
+            name="quadrant"
+            id="quadrant"
+            class="form-control required">
+          <label for="status">Route Status: </label>
+          <select
+            required
+            [ngModel]="route.status"
+            #status="ngModel"
+            name="status" 
+            id="status"
+            class="form-select">
+            <option value="true" selected>On Time</option>
+            <option value="false">Late</option>
+          </select>
+          <div class="btn-group">
+            <button
+              (click)="onCancel()" 
+              type="button" 
+              class="btn btn-secondary"
+              >Cancel</button>
+            <button 
+              type="submit" 
+              class="btn btn-primary">Save Changes</button>
+          </div>
+      </div>
+    </div>
+  </form>
+  </div>
+  <div class="card-body">
+    <form 
+    id="stop-edit" 
+    #s="ngForm" 
+    (ngSubmit)="onAddStop()"
+    class="form-control">
+      <div class="form-group">
+        <h4>Route Stops</h4>
+        <button type="button" class="btn btn-primary" (click)="collapse.toggle()">Add New Stop</button>
+        <div 
+          #collapse="ngbCollapse" 
+          [(ngbCollapse)]="isCollapsed" 
+          class="form-group">
+          <ul class="list-group list-group-flush form-control">
+            <li class="list-group-item">
+              <label for="newStopTime">Stop Time: </label>
+              <input
+                [ngModel]="newStop.stopTime"
+                type="text" 
+                name="newStopTime" 
+                id="newStopTime"
+                class="form-control">
+            </li>
+            <li class="list-group-item">
+              <label for="newStopLocation">Stop Location: </label>
+              <input
+                [ngModel]="newStop.location"
+                type="text" 
+                name="newStopLocation" 
+                id="newStopLocation"
+                class="form-control">
+            </li>
+            <li class="list-group-item">
+              <label for="newAverageRiders">Average Riders: </label>
+              <input
+                [ngModel]="newStop.averageRiders"
+                type="number" 
+                name="newAverageRiders" 
+                id="newAverageRiders"
+                class="form-control">
+            </li>
+          </ul>
+          <div class="btn-group">
+            <button 
+            type="button" 
+            class="btn btn-secondary"
+            (click)="onCancelStop()">Cancel</button>
+            <button 
+            type="button" 
+            class="btn btn-info"
+            (click)="onAddStop()">Save</button>
+            </div>
+        </div>
+          <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0"
+            *ngFor="let stop of route.stops">
+            <ngb-panel>
+              <ng-template ngbPanelTitle >
+                <h5>Stop: {{stop.stopId}}</h5>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <ul class="list-group list-group-flush form-control">
+                  <li class="list-group-item">
+                    <label for="stopTime">Stop Time: </label>
+                    <input
+                      [ngModel]="stop.stopTime"
+                      #stopTime="ngModel"
+                      [disabled]="stopSave" 
+                      type="text" 
+                      name="stopTime" 
+                      id="stopTime"
+                      class="form-control">
+                  </li>
+                  <li class="list-group-item">
+                    <label for="stopLocation">Stop Location: </label>
+                    <input
+                      [ngModel]="stop.location"
+                      #stopLocation="ngModel"
+                      [disabled]="stopSave" 
+                      type="text" 
+                      name="stopLocation" 
+                      id="stopLocation"
+                      class="form-control">
+                  </li>
+                  <li class="list-group-item">
+                    <label for="averageRiders">Average Riders: </label>
+                    <input
+                      [ngModel]="stop.averageRiders"
+                      #averageRiders="ngModel"
+                      [disabled]="stopSave" 
+                      type="text" 
+                      name="averageRiders" 
+                      id="averageRiders"
+                      class="form-control">
+                  </li>
+                </ul>
+                <div class="btn-group">
+                  <button 
+                    type="button" 
+                    class="btn btn-primary"
+                    (click)="onSaveStop(stop.stopId)">Save</button>
+                  <button 
+                    type="button" 
+                    class="btn btn-warning"
+                    (click)="onEditStop()">Edit</button>
+                  <button 
+                    type="button" 
+                    class="btn btn-danger"
+                    (click)="onDeleteStop(stop.stopId)">Delete</button>
+                </div>
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+      </div>
+    </form>
+  </div>
+</div>
+
+
 <div class="container content">
   <div class="row">
     <div class="col-md-12">
       <h2>Edit Route {{route.name}}</h2>
-      <a class="btn btn-secondary" routerLink="/routes">Return to Routes</a>
+      <a class="btn btn-outline-dark" routerLink="/routes">Return to Routes</a>
+    </div>
+  </div>
 <div class="row">
   <div class="col-md-12">
     <form 
@@ -175,10 +348,7 @@
     </form>
   </div>
 </div>
-
-
-    </div>
-  </div>
+    
 </div>
 
 
