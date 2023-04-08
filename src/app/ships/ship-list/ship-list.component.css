@@ -1,11 +1,3 @@
-tbody td, tbody th {
-  color: #000000;
-}
-
-.inactive {
-  background-color: grey;
-}
-
-.inactive td, .inactive th {
-  color: #444444;
+.table-active .table-primary, .table-active .table-secondary {
+  background-color: #9b84a0;
 }

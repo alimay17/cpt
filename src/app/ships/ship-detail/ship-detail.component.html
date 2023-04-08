@@ -1,30 +1,38 @@
 <div class="card bg-secondary">
+  <!------------------ Ship Details --------------------->
   <div class="card-body">
     <h4 class="card-header text-bg-dark">Ship: {{ship.shipId}}</h4>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Assigned Route: {{assignedRoute.name}}</li>
-      <li class="list-group-item">Capacity: {{ship.capacity}}</li>
-      <!-- <li class="list-group-item">Assigned Pilot: </li> -->
+      <li class="list-group-item list-group-item-secondary">Assigned Route: {{assignedRoute.name}}</li>
+      <li class="list-group-item list-group-item-secondary">Capacity: {{ship.capacity}}</li>
+      <li class="list-group-item list-group-item-secondary">Assigned Pilot: </li>
+      <li class="list-group-item list-group-item-secondary">
+        <div class="btn-group d-flex justify-content-center">
+          <button
+            routerLink="edit"
+            class="btn btn-secondary card-link">Edit Ship</button>
+          <button
+            (click)="onDelete()" 
+            class="btn btn-outline-danger card-link">Delete Ship</button>
+        </div>
+      </li>
     </ul>
-    <div class="btn-group">
-      <button
-        routerLink="edit"
-        class="btn btn-primary card-link">Edit Ship</button>
-      <button
-        (click)="onDelete()" 
-        class="btn btn-danger card-link">Delete Ship</button>
-    </div>
   </div>
+
+  <!------------------ Ship Status --------------------->
   <div class="card-body">
-    <h4 class="card-header text-bg-dark">Status</h4>
-    <div class="card-body text-bg-light text-center">
-      <h5
+    <h3 class="card-header text-bg-dark">Status</h3>
+    <div class="card-body text-bg-dark text-center">
+      <div
+        id="status"
         class="card-body alert text-light"
-        [ngStyle]="{ 'background-color': ship.status === 'Active'? 'green' : 'grey' }">
-        {{ship.status}}</h5>
-      <button
-        (click)="onChangeStatus()" 
-        class="btn btn-warning">Change Status</button>
+        [ngClass]="{ 'text-bg-secondary': ship.status == 'Inactive', 'text-bg-primary': ship.status == 'Active'}">
+        {{ship.status}}
+        <div class="btn-group d-flex justify-content-center">
+          <button
+          (click)="onChangeStatus()" 
+          class="btn btn-dark">Change Status</button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
