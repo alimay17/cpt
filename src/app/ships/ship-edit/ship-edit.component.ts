@@ -45,14 +45,15 @@ export class ShipEditComponent implements OnInit, OnDestroy {
         this.editMode = true;
         this.ship = JSON.parse(JSON.stringify(this.originalShip));
         this.route = this.ship.assignedRoute!;
-        console.log(this.route);
       }
-    )
+    );
+
     this.sub = this.routeService.routesChangedEvent.subscribe(
       (routes: Route[]) => {
         this.routes = routes;
+        this.route = this.routeService.getRoute(this.ship.assignedRoute!.id)!;
       }
-    )
+    );
 
     this.routeService.getRoutes();
   }
@@ -64,5 +65,13 @@ export class ShipEditComponent implements OnInit, OnDestroy {
   // methods
   onSubmit(form: NgForm){
 
+  }
+
+  onChangeStatus(){
+    if(this.ship.status === 'Active'){
+      this.ship.status = 'Inactive';
+    } else {
+      this.ship.status = 'Active';
+    }
   }
 }

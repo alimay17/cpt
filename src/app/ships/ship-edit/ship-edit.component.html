@@ -1,34 +1,60 @@
-<div class="container content">
+<div class="card bg-secondary">
+  <!------------------ Header --------------------->
+  <div class="card-body">
+    <h2
+    *ngIf="editMode" 
+    class="card-header text-bg-dark">Edit Ship: {{ship.shipId}}</h2>
+  <h2
+    *ngIf="!editMode" 
+    class="card-header text-bg-dark">Create New Ship</h2>
+
+  <div>{{ship.assignedRoute?.name}}</div>
+
+  <!------------------ Ship Details --------------------->
+  <form 
+  id="ship-edit"
+  #f="ngForm"
+  (ngSubmit)="onSubmit(f)"
+  class="form-control text-bg-light">
   <div class="row">
-    <div class="col-md-12">
-      <h2 *ngIf="editMode">Editing Ship: {{ship.shipId}}</h2>
-      <h2 *ngIf="!editMode">Create New Ship</h2>
-      <a routerLink="/ships" class="btn btn-secondary">Return to Ships</a>
-      <div class="row">
-        <div class="col-md-6">
-          <form 
-            id="ship-edit"
-            #f="ngForm"
-            (ngSubmit)="onSubmit(f)"
-            class="form-control">
-            <div class="row">
-              <div class="form-group">
-                <h4>Ship Details</h4>
-                <label for="assignedRoute">Assigned Route</label>
-                <select
-                  [ngModel]="route"
-                  #route="ngModel"
-                  name="assignedRoute" 
-                  class="form-select">
-                  <option
-                  *ngFor="let route of routes"
-                  value="route.id">{{route.name}}</option>
-                </select>
-              </div>
-            </div>
-          </form>
+    <div class="form-group">
+      <h4>Ship Details</h4>
+        <div class="row g-3">
+          <label for="aRoute" class="col-sm-5 col-form-label">Assigned Route: </label>
+          <div class="col-sm-7">
+            <input
+            [ngModel]="ship.assignedRoute?.name"
+            #aRoute="ngModel"
+            type="text"
+            name="aRoute"
+            id="aRoute"
+            readonly
+            class="form-control-plaintext">
+          </div>
         </div>
+      </div>
+  </div>
+</form>
+<div class="card-body">
+  <h3 class="card-header text-bg-dark">Status</h3>
+  <div class="card-body text-bg-dark text-center">
+    <div
+      id="status"
+      class="card-body alert text-light"
+      [ngClass]="{ 'text-bg-secondary': ship.status == 'Inactive', 'text-bg-primary': ship.status == 'Active'}">
+      {{ship.status}}
+      <div class="btn-group d-flex justify-content-center">
+        <button
+        (click)="onChangeStatus()" 
+        class="btn btn-dark">Change Status</button>
       </div>
     </div>
   </div>
 </div>
+  </div>
+</div>  
+
+
+
+
+

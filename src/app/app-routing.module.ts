@@ -23,16 +23,19 @@ const routes: Routes = [
   { path: 'ships', component: ShipsComponent, children:[
     { path: 'new', component: ShipEditComponent },
     { path: ':id/s', component: ShipDetailComponent },
-    { path: 'edit', component: ShipEditComponent },
-    { path: ':id/edit', component: ShipEditComponent },
+    { path: 'r/edit', component: ShipEditComponent },
+    { path: ':id/s/edit', component: ShipEditComponent },
   ] },
   
+  // home
   { path: 'home', component: HomeComponent, children: [
-    { path: ':id/s', redirectTo: '/ships/:id/s'},
-    { path: ':id/r', redirectTo: '/routes/:id/r'},
     { path: 'new/r', redirectTo: '/routes/new/r'},
-    
+    { path: ':id/r', redirectTo: '/routes/:id/r'},
+    { path: 'new/s', redirectTo: '/ships/new/s'},
+    { path: ':id/s', redirectTo: '/ships/:id/s'},    
   ] },
+
+  // global
   { path: ' ', redirectTo: 'home' },
   // { path: '**', redirectTo: 'home' }
 
