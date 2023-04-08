@@ -13,7 +13,7 @@
       <tr 
         *ngFor="let ship of ships"
         [ngClass]="{inactive: ship.status === 'Inactive'}"
-        [routerLink]="[ship.shipId]"
+        [routerLink]="[ship.shipId + '/s']"
         routerLinkActive="active">
         <th scope="row">{{ ship.shipId }}</th>
         <td>{{ ship.assignedRoute?.name }}</td>

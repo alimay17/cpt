@@ -1,24 +1,38 @@
-<h2>Routes Overview</h2>
-<div class="table-responsive">
-  <table class="table table-hoverable">
-    <thead class="table-dark">
-      <tr>
-        <th scope="col">Quadrant</th>
-        <th scope="col">Route Name</th>
-        <th scope="col">On Time</th>
-      </tr>
-    </thead>
-    <tbody class="table-group-divider">
-      <tr 
-        *ngFor="let route of routes" 
-        [routerLink]="[route.id]"
-        routerLinkActive="active" >
-        <th scope="row">{{ route.quadrant }}</th>
-        <td>{{ route.name }}</td>
-        <td [ngStyle]="{ 'background-color': route.status? 'green' : 'red' }" >
-          {{route.status | toString }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="card bg-secondary">
+  <div class="card-body">
+    <div class="card-header text-bg-dark">
+      <h2>Routes Overview</h2>
+      <div class="btn-group d-flex justify-content-center">
+        <a routerLink="new/r" class="btn btn-outline-secondary">Add new Route</a>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hoverable table-hover">
+        <thead class="purple">
+          <tr>
+            <th scope="col">Quadrant</th>
+            <th scope="col">Route Name</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr 
+            *ngFor="let route of routes" 
+            [routerLink]="[route.id]"
+            routerLinkActive="table-active"
+            class="table-secondary" >
+            <th scope="row">{{ route.quadrant }}</th>
+            <td>{{ route.name }}</td>
+            <td
+              [ngClass]="{'table-danger': !route.status, 'table-success': route.status}"
+              class="table-active">{{route.status | toString }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
+
+
+

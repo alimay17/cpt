@@ -1,18 +1,21 @@
-<div class="container content">
-  <div class="row">
-    <div class="col-md-12">
-      <h2>Edit Route {{route.name}}</h2>
-      <a class="btn btn-secondary" routerLink="/routes">Return to Routes</a>
-<div class="row">
-  <div class="col-md-6">
-    <form 
+<div class="card bg-secondary">
+  <!------------------ Header --------------------->
+  <div class="card-body">
+    <h2
+      *ngIf="editMode" 
+      class="card-header text-bg-dark">Edit Route: {{route.name}}</h2>
+    <h2
+      *ngIf="!editMode" 
+      class="card-header text-bg-dark">Create New Route</h2>
+
+  <!------------------ Route Details --------------------->
+      <form 
       id="route-edit" 
       #f="ngForm" 
       (ngSubmit)="onSubmit(f)"
-      class="form-control">
+      class="form-control text-bg-light">
       <div class="row">
         <div class="form-group">
-          <h4>Route Details</h4>
           <label for="name">Route Name: </label>
           <input
             required
@@ -46,25 +49,30 @@
             <button
               (click)="onCancel()" 
               type="button" 
-              class="btn btn-secondary"
-              >Cancel</button>
+              class="btn btn-outline-secondary">Cancel</button>
             <button 
+              type="button" 
+              class="btn btn-secondary" 
+              (click)="collapse.toggle()">Add New Stop</button>
+            <button
+              [ngClass]="{'btn-outline-dark': !f.valid}"
+              [disabled]="!f.valid" 
               type="submit" 
-              class="btn btn-primary">Save Changes</button>
+              class="btn btn-dark">Save Changes</button>
           </div>
       </div>
     </div>
   </form>
   </div>
-  <div class="col-md-6">
+  <!------------------ Route Stops - Add Stop --------------------->
+  <div class="card-body">
+    <h3 class="card-header text-bg-dark">Route Stops</h3>
     <form 
     id="stop-edit" 
-    #s="ngForm" 
+    #sNew="ngForm" 
     (ngSubmit)="onAddStop()"
     class="form-control">
       <div class="form-group">
-        <h4>Route Stops</h4>
-        <button type="button" class="btn btn-primary" (click)="collapse.toggle()">Add New Stop</button>
         <div 
           #collapse="ngbCollapse" 
           [(ngbCollapse)]="isCollapsed" 
@@ -73,6 +81,7 @@
             <li class="list-group-item">
               <label for="newStopTime">Stop Time: </label>
               <input
+                required
                 [ngModel]="newStop.stopTime"
                 type="text" 
                 name="newStopTime" 
@@ -82,6 +91,7 @@
             <li class="list-group-item">
               <label for="newStopLocation">Stop Location: </label>
               <input
+                required
                 [ngModel]="newStop.location"
                 type="text" 
                 name="newStopLocation" 
@@ -91,6 +101,7 @@
             <li class="list-group-item">
               <label for="newAverageRiders">Average Riders: </label>
               <input
+                required
                 [ngModel]="newStop.averageRiders"
                 type="number" 
                 name="newAverageRiders" 
@@ -100,15 +111,26 @@
           </ul>
           <div class="btn-group">
             <button 
-            type="button" 
-            class="btn btn-secondary"
-            (click)="onCancelStop()">Cancel</button>
-            <button 
-            type="button" 
-            class="btn btn-info"
-            (click)="onAddStop()">Save</button>
+              type="button" 
+              class="btn btn-outline-secondary"
+              (click)="onCancelStop()">Cancel</button>
+            <button
+              [ngClass]="{'btn-outline-dark': !sNew.valid}"
+              [disabled]="!sNew.valid" 
+              type="button" 
+              class="btn btn-dark"
+              (click)="onAddStop()">Save</button>
             </div>
         </div>
+      </div>
+    </form>
+  <!------------------ Route Stops - View Added Stops --------------------->
+  <form 
+  id="stop-edit" 
+  #e="ngForm" 
+  (ngSubmit)="onAddStop()"
+  class="form-control">
+  <div class="form-group">
           <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0"
             *ngFor="let stop of route.stops">
             <ngb-panel>
@@ -120,6 +142,7 @@
                   <li class="list-group-item">
                     <label for="stopTime">Stop Time: </label>
                     <input
+                      required
                       [ngModel]="stop.stopTime"
                       #stopTime="ngModel"
                       [disabled]="stopSave" 
@@ -131,6 +154,7 @@
                   <li class="list-group-item">
                     <label for="stopLocation">Stop Location: </label>
                     <input
+                      required
                       [ngModel]="stop.location"
                       #stopLocation="ngModel"
                       [disabled]="stopSave" 
@@ -142,6 +166,7 @@
                   <li class="list-group-item">
                     <label for="averageRiders">Average Riders: </label>
                     <input
+                      required
                       [ngModel]="stop.averageRiders"
                       #averageRiders="ngModel"
                       [disabled]="stopSave" 
@@ -154,16 +179,22 @@
                 <div class="btn-group">
                   <button 
                     type="button" 
-                    class="btn btn-primary"
-                    (click)="onSaveStop(stop.stopId)">Save</button>
+                    class="btn btn-outline-secondary"
+                    (click)="stopSave = true">Cancel</button>
                   <button 
                     type="button" 
-                    class="btn btn-warning"
-                    (click)="onEditStop()">Edit</button>
-                  <button 
-                    type="button" 
-                    class="btn btn-danger"
+                    class="btn btn-outline-danger"
                     (click)="onDeleteStop(stop.stopId)">Delete</button>
+                    <button 
+                    type="button" 
+                    class="btn btn-secondary"
+                    (click)="onEditStop()">Edit</button>
+                  <button
+                    [ngClass]="{'btn-outline-dark': stopSave}"
+                    [disabled]="!e.valid && stopSave"  
+                    type="button" 
+                    class="btn btn-dark"
+                    (click)="onSaveStop(stop.stopId)">Save</button>
                 </div>
               </ng-template>
             </ngb-panel>
@@ -172,11 +203,3 @@
     </form>
   </div>
 </div>
-
-    </div>
-  </div>
-
-
-
-
-

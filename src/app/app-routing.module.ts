@@ -10,20 +10,32 @@ import { ShipEditComponent } from './ships/ship-edit/ship-edit.component';
 import { ShipsComponent } from './ships/ships.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+
   // routes
   { path: 'routes', component: RoutesComponent, children:[
-    { path: ':id', component: RouteDetailComponent }
+    { path: 'new/r', component: RouteEditComponent },
+    { path: ':id/r', component: RouteDetailComponent },
+    { path: 'r/edit', component: RouteEditComponent },
+    { path: ':id/r/edit', component: RouteEditComponent },
   ] },
-  { path: 'routes/edit', component: RouteEditComponent },
-  { path: 'routes/:id/edit', component: RouteEditComponent },
 
   //ships
   { path: 'ships', component: ShipsComponent, children:[
-    { path: ':id', component: ShipDetailComponent }
+    { path: 'new', component: ShipEditComponent },
+    { path: ':id/s', component: ShipDetailComponent },
+    { path: 'edit', component: ShipEditComponent },
+    { path: ':id/edit', component: ShipEditComponent },
   ] },
-  { path: 'ships/edit', component: ShipEditComponent },
-  { path: 'ships/:id/edit', component: ShipEditComponent },
+  
+  { path: 'home', component: HomeComponent, children: [
+    { path: ':id/s', redirectTo: '/ships/:id/s'},
+    { path: ':id/r', redirectTo: '/routes/:id/r'},
+    { path: 'new/r', redirectTo: '/routes/new/r'},
+    
+  ] },
+  { path: ' ', redirectTo: 'home' },
+  // { path: '**', redirectTo: 'home' }
+
 ];
 
 @NgModule({
