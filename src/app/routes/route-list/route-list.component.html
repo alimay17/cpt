@@ -13,12 +13,13 @@
             <th scope="col">Quadrant</th>
             <th scope="col">Route Name</th>
             <th scope="col">Status</th>
+            <th scope="col">Num of Stops</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
           <tr 
             *ngFor="let route of routes" 
-            [routerLink]="[route.id]"
+            [routerLink]="[route.id + '/r']"
             routerLinkActive="table-active"
             class="table-secondary" >
             <th scope="row">{{ route.quadrant }}</th>
@@ -27,6 +28,7 @@
               [ngClass]="{'table-danger': !route.status, 'table-success': route.status}"
               class="table-active">{{route.status | toString }}
             </td>
+            <td scope="row">{{route.stops.length}}</td>
           </tr>
         </tbody>
       </table>
