@@ -6,7 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
-  // properties
-  title = 'cpt';
+  title = 'Coruscant Public Transport';
 }

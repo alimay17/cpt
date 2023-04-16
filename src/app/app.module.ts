@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+// internal imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header.component';
@@ -21,16 +22,13 @@ import { PilotEditComponent } from './pilots/pilot-edit/pilot-edit.component';
 import { PilotDetailComponent } from './pilots/pilot-detail/pilot-detail.component';
 import { PilotListComponent } from './pilots/pilot-list/pilot-list.component';
 import { PilotItemComponent } from './pilots/pilot-list/pilot-item/pilot-item.component';
-import { toString } from 'shared/toString.pipe';
+import { toStringPipe } from 'src/app/shared/toString.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent,
     RoutesComponent,
-    ShipsComponent,
-    PilotsComponent,
     RouteEditComponent,
     RouteDetailComponent,
     RouteListComponent,
@@ -41,9 +39,7 @@ import { toString } from 'shared/toString.pipe';
     PilotDetailComponent,
     PilotListComponent,
     PilotItemComponent,
-
-    // pipes
-    toString,
+    toStringPipe,
   ],
   imports: [
     BrowserModule,

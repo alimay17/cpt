@@ -9,18 +9,15 @@ import { RouteService } from '../route.service';
   styleUrls: ['./route-list.component.css']
 })
 export class RouteListComponent implements OnInit, OnDestroy {
-  
+
   // properties
   routes!: Route[];
-  numRoutes: number = 0;
-  private sub!:  Subscription;
-  private myPath!: boolean;
-  
+  private sub!: Subscription;
 
   // constructor
   constructor(
     private routeService: RouteService
-  ){}
+  ) {}
 
   // implements
   ngOnInit(): void {
@@ -29,11 +26,10 @@ export class RouteListComponent implements OnInit, OnDestroy {
         this.routes = routes;
       }
     )
-
     this.routeService.getRoutes();
   }
 
   ngOnDestroy(): void {
-      this.sub.unsubscribe();
+    this.sub.unsubscribe();
   }
 }

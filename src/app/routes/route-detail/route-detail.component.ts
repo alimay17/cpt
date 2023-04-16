@@ -18,7 +18,7 @@ export class RouteDetailComponent implements OnInit {
     private routeService: RouteService,
     private router: Router,
     private myRoute: ActivatedRoute
-  ){}
+  ) {}
 
   // implements
   ngOnInit(): void {
@@ -28,16 +28,20 @@ export class RouteDetailComponent implements OnInit {
         this.route = this.routeService.getRoute(id)!;
       }
     )
+    this.routeService.routesChangedEvent.subscribe(() => {
+      this.route = this.routeService.getRoute(this.route.id)!;
+    })
   }
 
   // methods
-  onDelete(){
+  onDelete() {
     this.routeService.deleteRoute(this.route);
     this.router.navigate(['/routes']);
   }
 
-  onChangeStatus(){
+  onChangeStatus() {
     this.route.status = !this.route.status;
+    this.routeService.updateRoute(this.route, this.route);
   }
 
 }

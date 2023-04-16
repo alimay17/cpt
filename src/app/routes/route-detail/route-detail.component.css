@@ -1,4 +1,4 @@
-#route-info{
+#route-info {
   border: 2px solid black;
 }
 
@@ -7,6 +7,34 @@
   color: black;
 }
 
-h5 {
-  font-size: 0.99em;
+.btn-secondary {
+  background-color: #503f53;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  color: #000000;
+  background-color: #9b84a0;
+}
+
+.btn-outline-danger {
+  border-color: #F85025;
+  color: #F85025;
+}
+
+.btn-outline-danger:hover {
+  background-color: #F85025;
+  color: black;
+}
+
+ul {
+  border-radius: 5px;
+}
+
+#status {
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 10px;
+  margin-right: auto;
+  margin-left: auto;
 }

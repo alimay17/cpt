@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RouteDetailComponent } from './routes/route-detail/route-detail.component';
 import { RouteEditComponent } from './routes/route-edit/route-edit.component';
+
 import { RoutesComponent } from './routes/routes.component';
 import { ShipDetailComponent } from './ships/ship-detail/ship-detail.component';
 import { ShipEditComponent } from './ships/ship-edit/ship-edit.component';
@@ -50,4 +51,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
