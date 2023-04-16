@@ -10,7 +10,8 @@
       <table class="table table-hoverable table-hover">
         <thead class="purple">
           <tr>
-            <th scope="col">Ship Id</th>
+            <th scope="col">ID</th>
+            <th scope="col">Ship Name</th>
             <th scope="col">Assigned Route</th>
             <th scope="col">Status</th>
           </tr>
@@ -21,7 +22,8 @@
             [routerLink]="[ship.shipId + '/s']"
             routerLinkActive="table-active"
             class="table-secondary">
-            <th scope="row">{{ ship.shipId }}</th>
+            <td scope="row">{{ ship.shipId }}</td>
+            <td scope="row">'{{ ship.name }}'</td>
             <td>{{ ship.assignedRoute?.name }}</td>
             <td
             [ngClass]="{'table-dark': ship.status == 'Inactive', 'table-primary': ship.status =='Active'}"

@@ -16,7 +16,7 @@ export class ShipEditComponent implements OnInit, OnDestroy {
 
   // properties
   originalShip!: Ship;
-  ship: Ship = new Ship('',null, 0, 'Inactive');
+  ship: Ship = new Ship('','',null, 0, 'Inactive');
   route!: Route;
   routes!: Route[];
   editMode: boolean = false;

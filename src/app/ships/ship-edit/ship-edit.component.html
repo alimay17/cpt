@@ -3,13 +3,10 @@
   <div class="card-body">
     <h2
     *ngIf="editMode" 
-    class="card-header text-bg-dark">Edit Ship: {{ship.shipId}}</h2>
+    class="card-header text-bg-dark">Edit Ship: '{{ship.name}}'</h2>
   <h2
     *ngIf="!editMode" 
     class="card-header text-bg-dark">Create New Ship</h2>
-
-  <div>{{ship.assignedRoute?.name}}</div>
-
   <!------------------ Ship Details --------------------->
   <form 
   id="ship-edit"
@@ -20,7 +17,7 @@
     <div class="form-group">
       <h4>Ship Details</h4>
         <div class="row g-3">
-          <label for="aRoute" class="col-sm-5 col-form-label">Assigned Route: </label>
+          <label for="aRoute" class="col-sm-5 col-form-label">Current Assigned Route: </label>
           <div class="col-sm-7">
             <input
             [ngModel]="ship.assignedRoute?.name"
@@ -32,26 +29,65 @@
             class="form-control-plaintext">
           </div>
         </div>
+        <div class="row g-3">
+          <label for="aRoute" class="col-sm-5 col-form-label">Current Assigned Pilot: </label>
+          <div class="col-sm-7">
+            <input
+            type="text"
+            name="aPilot"
+            id="aPilot"
+            readonly
+            class="form-control-plaintext">
+          </div>
+        </div>
+        <label for="name">Ship Name: </label>
+        <input
+        required
+        [ngModel]="ship.name"
+        #name="ngModel" 
+        type="text" 
+        name="name" 
+        id="name"
+        class="form-control required">
+        <label for="name">Ship Capacity: </label>
+        <input
+        required
+        [ngModel]="ship.capacity"
+        #capacity="ngModel" 
+        type="number" 
+        name="capacity" 
+        id="capacity"
+        class="form-control required">
+        <label for="newRoute">Assign New Route: </label>
+        <select
+          name="newRoute"
+          id="newRoute" 
+          class="form-select"> 
+          <option selected>None</option>
+          <option 
+            *ngFor="let newRoute of routes"
+            value="newRoute.id">{{ newRoute.name }}</option>
+        </select>
+        <label for="newPilot">Assign New Pilot: </label>
+        <select
+          name="newPilot"
+          id="newPilot" 
+          class="form-select"> 
+          <option selected>None</option>
+          <option></option>
+        </select>
+        <div class="btn-group">
+          <button 
+            type="button" 
+            class="btn btn-outline-secondary">Cancel</button>
+          <button
+            type="button" 
+            class="btn btn-dark">Save</button>
+        </div>
       </div>
   </div>
 </form>
-<div class="card-body">
-  <h3 class="card-header text-bg-dark">Status</h3>
-  <div class="card-body text-bg-dark text-center">
-    <div
-      id="status"
-      class="card-body alert text-light"
-      [ngClass]="{ 'text-bg-secondary': ship.status == 'Inactive', 'text-bg-primary': ship.status == 'Active'}">
-      {{ship.status}}
-      <div class="btn-group d-flex justify-content-center">
-        <button
-        (click)="onChangeStatus()" 
-        class="btn btn-dark">Change Status</button>
-      </div>
-    </div>
-  </div>
 </div>
-  </div>
 </div>  
 
 
