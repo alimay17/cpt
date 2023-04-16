@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Route } from './route.model';
+import { mockRoutes } from './mockRouteData';
 
 
 @Injectable({
@@ -37,6 +38,11 @@ export class RouteService {
           console.log(error.message);
         }
       });
+  }
+
+  getMockRoutes() {
+    this.routes = mockRoutes;
+    this.routesChangedEvent.next(this.routes.slice());
   }
 
   // Add one route

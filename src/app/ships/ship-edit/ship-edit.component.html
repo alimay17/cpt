@@ -17,30 +17,6 @@
   <div class="row">
     <div class="form-group">
       <h4>Ship Details</h4>
-        <div class="row g-3">
-          <label for="aRoute" class="col-sm-5 col-form-label">Current Assigned Route: </label>
-          <div class="col-sm-7">
-            <input
-            [ngModel]="ship.assignedRoute?.name"
-            #aRoute="ngModel"
-            type="text"
-            name="aRoute"
-            id="aRoute"
-            readonly
-            class="form-control-plaintext">
-          </div>
-        </div>
-        <div class="row g-3">
-          <label for="aRoute" class="col-sm-5 col-form-label">Current Assigned Pilot: </label>
-          <div class="col-sm-7">
-            <input
-            type="text"
-            name="aPilot"
-            id="aPilot"
-            readonly
-            class="form-control-plaintext">
-          </div>
-        </div>
         <label for="name">Ship Name: </label>
         <input
         required
@@ -59,30 +35,40 @@
         name="capacity" 
         id="capacity"
         class="form-control required">
-        <label for="newRoute">Assign New Route: </label>
+        <label for="newRoute">Assign Route: </label>
         <select
-          name="newRoute"
-          id="newRoute" 
-          class="form-select"> 
-          <option selected>None</option>
+          [ngModel]="ship.assignedRoute"
+          #assignedRoute="ngModel"
+          name="assignedRoute"
+          id="assignedRoute" 
+          class="form-select">
+          <option 
+            value="null" 
+            class="text-bg-danger">Remove Route Assignment</option> 
+          <option
+            [value]="ship.assignedRoute"
+            class="text-bg-primary">{{ship.assignedRoute?.name}}</option>
           <option 
             *ngFor="let newRoute of routes"
-            value="newRoute.id">{{ newRoute.name }}</option>
+            [value]="newRoute.id">{{ newRoute.name }}</option>
         </select>
-        <label for="newPilot">Assign New Pilot: </label>
+        <label for="newPilot">Assign Pilot: </label>
         <select
           name="newPilot"
           id="newPilot" 
           class="form-select"> 
-          <option selected>None</option>
+          <option selected value="none">None</option>
           <option></option>
         </select>
         <div class="btn-group">
-          <button 
+          <button
+            (click)="onCancel()" 
             type="button" 
             class="btn btn-outline-secondary">Cancel</button>
           <button
-            type="button" 
+            [ngClass]="{'btn-outline-dark': !f.valid}"
+            [disabled]="!f.valid" 
+            type="submit" 
             class="btn btn-dark">Save</button>
         </div>
       </div>

@@ -2,3 +2,17 @@
 .table-active .table-secondary {
   background-color: #9b84a0;
 }
+
+.table-responsive {
+  border-radius: 5px;
+}
+
+.purple {
+  background-color: #503f53;
+  color: white;
+}
+
+td:hover,
+th:hover {
+  cursor: pointer;
+}

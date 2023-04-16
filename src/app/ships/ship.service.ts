@@ -42,11 +42,24 @@ export class ShipService {
     this.shipsChangedEvent.next(this.ships.slice());
   }
 
-  addShip(){
+  addShip(newShip: Ship){
 
   }
 
-  updateShip(){
-    
+  // update 
+  updateShip(oldShip: Ship, newShip: Ship){
+    if(!oldShip || !newShip){
+      return;
+    }
+
+    const pos = this.ships.findIndex(s => s.shipId === oldShip.shipId);
+    if (pos < 0) {
+      return;
+    }
+
+    newShip.shipId = oldShip.shipId;
+
+    this.ships[pos] = newShip;
+    this.shipsChangedEvent.next(this.ships.slice());
   }
 }
