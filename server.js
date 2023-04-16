@@ -9,8 +9,14 @@ const mongoose = require('mongoose');
 
 // import the routing file to handle the default (index) route
 var index = require('./server/routes/app');
+const myRoutes = require('./server/routes/routes');
 
-var app = express(); // create an instance of express
+var app = express();
+
+// connect to mongo db
+mongoose.connect('mongodb://127.0.0.1:27017/cpt', {useNewUrlParser: true})
+.then(()=> {console.log('Connected to Database!')})
+.catch(error => {console.log('Connection Failed: ', error)});
 
 // Tell express to use the following parsers for POST data
 app.use(bodyParser.json());
@@ -43,7 +49,7 @@ app.use(express.static(path.join(__dirname, 'dist/cpt')));
 app.use('/', index);
 
 // internal routing
-
+app.use('/api/routes', myRoutes);
 
 // Tell express to map all other non-defined routes back to the index page
 app.get('*', (req, res) => {
