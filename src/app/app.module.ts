@@ -21,24 +21,25 @@ import { ShipListComponent } from './ships/ship-list/ship-list.component';
 import { PilotEditComponent } from './pilots/pilot-edit/pilot-edit.component';
 import { PilotDetailComponent } from './pilots/pilot-detail/pilot-detail.component';
 import { PilotListComponent } from './pilots/pilot-list/pilot-list.component';
-import { PilotItemComponent } from './pilots/pilot-list/pilot-item/pilot-item.component';
 import { toStringPipe } from 'src/app/shared/toString.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    HomeComponent,
     RoutesComponent,
     RouteEditComponent,
     RouteDetailComponent,
     RouteListComponent,
+    ShipsComponent,
     ShipEditComponent,
     ShipDetailComponent,
     ShipListComponent,
+    PilotsComponent,
     PilotEditComponent,
     PilotDetailComponent,
     PilotListComponent,
-    PilotItemComponent,
     toStringPipe,
   ],
   imports: [
