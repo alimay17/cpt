@@ -17,17 +17,11 @@
           </tr>
         </thead>
         <tbody class="table-group-divider">
-          <tr 
-            *ngFor="let ship of ships"
-            [routerLink]="[ship.shipId + '/s']"
-            routerLinkActive="table-active"
-            class="table-secondary">
+          <tr *ngFor="let ship of ships" [routerLink]="[ship.shipId + '/s']" routerLinkActive="table-active" class="table-secondary">
             <td scope="row">{{ ship.shipId }}</td>
             <td scope="row">'{{ ship.name }}'</td>
             <td>{{ ship.assignedRoute?.name }}</td>
-            <td
-            [ngClass]="{'table-dark': ship.status == 'Inactive', 'table-primary': ship.status =='Active'}"
-            class="table-active">{{ ship.status }}</td>
+            <td [ngClass]="{'table-dark': ship.status == 'Inactive', 'table-primary': ship.status =='Active'}" class="table-active">{{ ship.status }}</td>
           </tr>
         </tbody>
       </table>

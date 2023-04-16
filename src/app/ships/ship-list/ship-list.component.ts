@@ -9,7 +9,7 @@ import { ShipService } from '../ship.service';
   templateUrl: './ship-list.component.html',
   styleUrls: ['./ship-list.component.css']
 })
-export class ShipListComponent implements OnInit, OnDestroy{
+export class ShipListComponent implements OnInit, OnDestroy {
   // properties
   ships!: Ship[];
   private sub!: Subscription;
@@ -17,7 +17,7 @@ export class ShipListComponent implements OnInit, OnDestroy{
   // constructor
   constructor(
     private shipService: ShipService
-  ){}
+  ) {}
 
   // implements
   ngOnInit(): void {

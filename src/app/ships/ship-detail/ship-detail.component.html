@@ -9,12 +9,8 @@
       <li class="list-group-item list-group-item-secondary">Assigned Pilot: </li>
       <li class="list-group-item list-group-item-secondary">
         <div class="btn-group d-flex justify-content-center">
-          <button
-            routerLink="edit"
-            class="btn btn-secondary card-link">Edit Ship</button>
-          <button
-            (click)="onDelete()" 
-            class="btn btn-outline-danger card-link">Delete Ship</button>
+          <button routerLink="edit" class="btn btn-secondary card-link">Edit Ship</button>
+          <button (click)="onDelete()" class="btn btn-outline-danger card-link">Delete Ship</button>
         </div>
       </li>
     </ul>
@@ -24,15 +20,10 @@
   <div class="card-body">
     <h3 class="card-header text-bg-dark">Status</h3>
     <div class="card-body text-bg-dark text-center">
-      <div
-        id="status"
-        class="card-body alert text-light"
-        [ngClass]="{ 'text-bg-secondary': ship.status == 'Inactive', 'text-bg-primary': ship.status == 'Active'}">
+      <div id="status" class="card-body alert text-light" [ngClass]="{ 'text-bg-secondary': ship.status == 'Inactive', 'text-bg-primary': ship.status == 'Active'}">
         {{ship.status}}
         <div class="btn-group d-flex justify-content-center">
-          <button
-          (click)="onChangeStatus()" 
-          class="btn btn-dark">Change Status</button>
+          <button (click)="onChangeStatus()" class="btn btn-dark">Change Status</button>
         </div>
       </div>
     </div>

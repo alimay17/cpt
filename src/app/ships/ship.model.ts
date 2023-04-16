@@ -7,5 +7,5 @@ export class Ship {
     public assignedRoute: Route | null,
     public capacity: number,
     public status: string
-  ){}
+  ) {}
 }

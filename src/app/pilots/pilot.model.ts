@@ -3,6 +3,7 @@ export class Pilot {
     public id: number,
     public AI: boolean,
     public name: string,
+    public age: number,
     public status: string
   ){}
 }

@@ -42,5 +42,11 @@ export class ShipService {
     this.shipsChangedEvent.next(this.ships.slice());
   }
 
+  addShip(){
 
+  }
+
+  updateShip(){
+    
+  }
 }

@@ -2,8 +2,7 @@ import { mockRoutes } from "../routes/mockRouteData";
 import { Route } from "../routes/route.model";
 import { Ship } from "./ship.model";
 
-export const mockShips: Ship[] = [
-  {
+export const mockShips: Ship[] = [{
     shipId: 'fhi9fnas',
     name: 'Wrecker',
     assignedRoute: mockRoutes[0],

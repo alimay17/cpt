@@ -1,32 +1,34 @@
-<div class="row">
-  <div class="col-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h2 class="panel-title">Active Pilots</h2>
-      </div>
-      <div class="panel-body">
-        <ng-container *ngFor="let pilotItem of pilots">
-          <cpt-pilot-item 
-            [pilot]="pilotItem"
-            *ngIf="pilotItem.status === 'Active'">
-          </cpt-pilot-item>
-        </ng-container>
+<div class="card bg-secondary">
+  <div class="card-body">
+    <div class="card-header text-bg-dark">
+      <h2>Ships Overview</h2>
+      <div class="btn-group d-flex justify-content-center">
+        <a routerLink="new/s" class="btn btn-outline-secondary">Add new Ship</a>
       </div>
     </div>
-  </div>
-  <div class="col-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h2 class="panel-title">Inactive Pilots</h2>
-      </div>
-      <div class="panel-body">
-        <ng-container *ngFor="let pilotItem of pilots">
-          <cpt-pilot-item
-            [pilot]="pilotItem"
-            *ngIf="pilotItem.status === 'Inactive'">
-          </cpt-pilot-item>
-        </ng-container>
-      </div>
+    <div class="table-responsive">
+      <table class="table table-hoverable table-hover">
+        <thead class="purple">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Ship Name</th>
+            <th scope="col">Assigned Route</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr 
+            *ngFor="let pilot of pilots"
+            [routerLink]="[pilot.name + '/s']"
+            routerLinkActive="table-active"
+            class="table-secondary">
+            <td scope="row">{{ pilot.AI }}</td>
+            <td
+            [ngClass]="{'table-dark': pilot.status == 'Inactive', 'table-primary': pilot.status =='Active'}"
+            class="table-active">{{ pilot.status }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

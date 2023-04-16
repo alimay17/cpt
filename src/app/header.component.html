@@ -4,11 +4,8 @@
       <a class="navbar-brand" routerLink="/">
         <img src="../assets/images/cpt_logo.jpg" alt="CPT Logo">
       </a>
-      <button 
-        class="navbar-toggler" 
-        type="button" 
-        (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
-  
+      <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
+
       <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
         <ul class="navbar-nav">
           <li class="nav-item" routerLinkActive="active">
@@ -31,7 +28,7 @@
       <a class="btn btn-outline-secondary" routerLink="home" routerLinkActive="active">Home</a>
       <a class="btn btn-outline-secondary" routerLink="routes" routerLinkActive="active">Manage Routes</a>
       <a class="btn btn-outline-secondary" routerLink="ships" routerLinkActive="active">Manage Ships</a>
-      <a class="btn btn-outline-secondary" routerLink="pilots"routerLinkActive="active">Manage Pilots</a>
+      <a class="btn btn-outline-secondary" routerLink="pilots" routerLinkActive="active">Manage Pilots</a>
     </div>
   </div>
 </div>

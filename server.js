@@ -14,9 +14,9 @@ const myRoutes = require('./server/routes/routes');
 var app = express();
 
 // connect to mongo db
-mongoose.connect('mongodb://127.0.0.1:27017/cpt', {useNewUrlParser: true})
-.then(()=> {console.log('Connected to Database!')})
-.catch(error => {console.log('Connection Failed: ', error)});
+mongoose.connect('mongodb://127.0.0.1:27017/cpt', { useNewUrlParser: true })
+  .then(() => { console.log('Connected to Database!') })
+  .catch(error => { console.log('Connection Failed: ', error) });
 
 // Tell express to use the following parsers for POST data
 app.use(bodyParser.json());

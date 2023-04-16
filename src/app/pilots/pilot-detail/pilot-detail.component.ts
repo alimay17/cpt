@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Pilot } from '../pilot.model';
 
 @Component({
   selector: 'cpt-pilot-detail',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./pilot-detail.component.css']
 })
 export class PilotDetailComponent {
+
+  // properties
+  pilot!: Pilot;
 
 }

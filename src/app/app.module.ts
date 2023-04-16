@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -42,7 +41,7 @@ import { toString } from 'shared/toString.pipe';
     PilotDetailComponent,
     PilotListComponent,
     PilotItemComponent,
-    
+
     // pipes
     toString,
   ],
@@ -57,4 +56,4 @@ import { toString } from 'shared/toString.pipe';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { mockPilots } from '../mockPilotData';
 import { Pilot } from '../pilot.model';
+import { PilotService } from '../pilot.service';
 
 @Component({
   selector: 'cpt-pilot-list',
@@ -13,15 +14,16 @@ export class PilotListComponent implements OnInit {
   pilots!: Pilot[];
 
   // constructor
-  constructor(){
-
-  }
+  constructor(
+    private pilotService: PilotService
+  ){}
 
   // implements
   ngOnInit(): void {
-    this.pilots = mockPilots;
+    this.pilots = this.pilotService.getPilots();
   }
 
   // methods
+
 
 }
